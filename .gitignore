@@ -1,0 +1,36 @@
+# Dependency directories
+/node_modules
+/dist
+
+# Build artifacts
+/dist/
+/*.js
+/*.js.map
+/*.css
+/*.css.map
+/*.ngfactory.ts
+/*.ngstyle.ts
+*.ngsummary.json
+*.ngsummary.ts
+
+# Cache directories
+/.sass-cache
+/node_modules
+/packages/*/node_modules
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Visual Studio settings files
+.vscode/
+*.sln
+*.suo
+*.user
+*.csproj
+*.csproj.user
+*.vcxproj
+*.vcxproj.user
+
+# sensitive files
+.env
