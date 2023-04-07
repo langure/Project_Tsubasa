@@ -34,3 +34,6 @@ Thumbs.db
 
 # sensitive files
 .env
+tsubasa/.editorconfig
+tsubasa/.firebase/hosting.ZGlzdC90c3ViYXNh.cache
+tsubasa/.firebase/hosting.ZGlzdA.cache
