@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { getAuth, isSignInWithEmailLink, signInWithEmailLink, signInWithCustomToken } from "firebase/auth";
+import { getAuth, isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
 import { environment } from '../environments/environment';
 import { initializeApp } from "firebase/app";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-
+import { Observable } from 'rxjs';
+import { Person } from './interfaces/person.interface';
+import { AngularFirestore, DocumentSnapshot } from '@angular/fire/compat/firestore';
 
 
 @Injectable({
@@ -13,7 +15,9 @@ export class BackendLinkService {
 
   userData: any; // Save logged in user data
 
-  constructor(private _afAuth: AngularFireAuth) {
+  constructor(
+    private _afAuth: AngularFireAuth,
+    private _firestore: AngularFirestore) {
 
     this._afAuth.authState.subscribe((user) => {
       if (user) {
@@ -25,8 +29,19 @@ export class BackendLinkService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
-
   }
+
+  /**
+   * This object retrieves the user data as a person element. This data comes from a collection
+   * in firestore.
+   * @returns an observable of type Person
+   */
+  get_person(): Observable<Person[]> {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const email = user.email;
+    return this._firestore.collection<Person>('persons', ref => ref.where('email', '==', email)).valueChanges();
+  }
+
 
   /**
    * This method is called from the app-routing.module.ts file to check if the user is authenticated

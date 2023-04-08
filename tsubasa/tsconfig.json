@@ -19,6 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "skipLibCheck": true, // workaround for an issue with Angular 15 -- https://github.com/angular/angularfire/issues/3290#issue-1454996242
     "lib": [
       "ES2022",
       "dom"
